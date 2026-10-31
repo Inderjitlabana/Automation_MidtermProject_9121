@@ -20,3 +20,20 @@ module "rgroup" {
 }
 
 
+module "network" {
+  source = "./modules/network-9121"
+
+  resource_group_name = module.rgroup.resource_group_name
+  location            = var.location
+  humber_id           = var.humber_id
+
+  vnet_address_space      = ["10.0.0.0/16"]
+  subnet_address_prefixes = ["10.0.1.0/24"]
+
+  allowed_ssh_source   = var.allowed_admin_ip
+  allowed_rdp_source   = var.allowed_admin_ip
+  allowed_winrm_source = var.allowed_admin_ip
+
+  tags = local.common_tags
+}
+

@@ -26,3 +26,8 @@ variable "environment" {
   default     = "Learning"
 }
 
+variable "allowed_admin_ip" {
+  description = "Trusted public IPv4 address in CIDR format"
+  type        = string
+}
+
