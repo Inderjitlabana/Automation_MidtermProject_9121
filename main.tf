@@ -37,3 +37,22 @@ module "network" {
   tags = local.common_tags
 }
 
+
+module "common" {
+  source = "./modules/common-9121"
+
+  resource_group_name = module.rgroup.resource_group_name
+  location            = var.location
+  humber_id           = var.humber_id
+
+  storage_account_name     = var.common_storage_account_name
+  storage_replication_type = "LRS"
+
+  log_analytics_sku  = "PerGB2018"
+  log_retention_days = var.log_retention_days
+
+  recovery_vault_sku = "Standard"
+
+  tags = local.common_tags
+}
+

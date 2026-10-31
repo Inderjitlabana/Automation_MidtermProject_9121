@@ -31,3 +31,14 @@ variable "allowed_admin_ip" {
   type        = string
 }
 
+variable "common_storage_account_name" {
+  description = "Unique storage account name for common services"
+  type        = string
+}
+
+variable "log_retention_days" {
+  description = "Log Analytics retention period"
+  type        = number
+  default     = 30
+}
+
