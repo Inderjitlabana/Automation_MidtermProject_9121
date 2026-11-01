@@ -77,9 +77,9 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   }
 
   source_image_reference {
-    publisher = "OpenLogic"
-    offer     = "CentOS"
-    sku       = "8_2"
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
 
@@ -112,20 +112,25 @@ resource "azurerm_virtual_machine_extension" "network_watcher" {
 
 # Azure Monitor Agent extension
 resource "azurerm_virtual_machine_extension" "azure_monitor" {
-  for_each = local.linux_vms
+  for_each = azurerm_linux_virtual_machine.linux_vm
 
-  name               = "AzureMonitorLinuxAgent"
-  virtual_machine_id = azurerm_linux_virtual_machine.linux_vm[each.key].id
-
-  publisher            = "Microsoft.Azure.Monitor"
-  type                 = "AzureMonitorLinuxAgent"
-  type_handler_version = "1.0"
-
+  name                       = "AzureMonitorLinuxAgent"
+  virtual_machine_id         = each.value.id
+  publisher                  = "Microsoft.Azure.Monitor"
+  type                       = "AzureMonitorLinuxAgent"
+  type_handler_version       = "1.0"
   auto_upgrade_minor_version = true
+
+  depends_on = [
+    local.linux_vms
+  ]
 
   settings = jsonencode({
     authentication = {
-      managedIdentity = {}
+      managedIdentity = {
+        "identifier-name"  = "mi_res_id"
+        "identifier-value" = "SYSTEM"
+      }
     }
   })
 
