@@ -4,6 +4,8 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   resource_group_name = var.resource_group_name
   location            = var.location
 
+  zone = "1"
+
   version = "16"
 
   administrator_login    = var.administrator_login
