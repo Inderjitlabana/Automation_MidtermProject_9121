@@ -100,3 +100,19 @@ module "vmwindows" {
   tags = local.tags
 }
 
+module "datadisk" {
+  source = "./modules/datadisk-9121"
+
+  humber_id           = var.humber_id
+  resource_group_name = module.rgroup.resource_group_name
+
+  linux_vm_ids       = module.vmlinux.linux_vm_ids
+  linux_vm_locations = module.vmlinux.linux_vm_locations
+  linux_vm_zones     = module.vmlinux.linux_vm_zones
+
+  windows_vm_id       = module.vmwindows.windows_vm_ids[0]
+  windows_vm_location = var.location
+
+  tags = local.tags
+}
+

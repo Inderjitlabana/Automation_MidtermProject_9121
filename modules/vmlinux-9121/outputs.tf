@@ -8,8 +8,15 @@ output "linux_vm_names" {
 
 output "linux_vm_ids" {
   value = {
-    for k, vm in azurerm_linux_virtual_machine.linux_vm :
-    k => vm.id
+    for key, vm in azurerm_linux_virtual_machine.linux_vm :
+    key => vm.id
+  }
+}
+
+output "linux_vm_locations" {
+  value = {
+    for key, vm in azurerm_linux_virtual_machine.linux_vm :
+    key => vm.location
   }
 }
 
@@ -36,8 +43,15 @@ output "linux_nic_ids" {
 
 output "linux_zones" {
   value = {
-    for k, vm in azurerm_linux_virtual_machine.linux_vm :
-    k => vm.zone
+    for key, vm in azurerm_linux_virtual_machine.linux_vm :
+    key => vm.zone
   }
 }
+output "linux_vm_zones" {
+  description = "Availability zones of the Linux VMs"
 
+  value = {
+    for key, vm in azurerm_linux_virtual_machine.linux_vm :
+    key => vm.zone
+  }
+}

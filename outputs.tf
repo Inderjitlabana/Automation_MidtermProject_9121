@@ -98,4 +98,14 @@ output "windows_public_ips" {
 output "windows_availability_set" {
   value = module.vmwindows.windows_availability_set_name
 }
+output "linux_data_disks" {
+  value = module.datadisk.linux_disk_names
+}
 
+output "windows_data_disk" {
+  value = module.datadisk.windows_disk_name
+}
+
+output "total_data_disks" {
+  value = module.datadisk.total_disks
+}
