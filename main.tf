@@ -128,3 +128,18 @@ module "loadbalancer" {
   tags = local.tags
 }
 
+module "database" {
+  source = "./modules/database-9121"
+
+  humber_id           = var.humber_id
+  resource_group_name = module.rgroup.resource_group_name
+  location            = "canadacentral"
+
+  administrator_login    = "pgadmin9121"
+  administrator_password = var.postgres_admin_password
+
+  sku_name = "B_Standard_B1ms"
+
+  tags = local.tags
+}
+

@@ -120,3 +120,10 @@ output "loadbalancer_public_ip" {
 output "loadbalancer_fqdn" {
   value = module.loadbalancer.loadbalancer_fqdn
 }
+output "database_server_name" {
+  value = module.database.database_server_name
+}
+
+output "database_server_fqdn" {
+  value = module.database.database_server_fqdn
+}
