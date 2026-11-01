@@ -56,3 +56,25 @@ module "common" {
   tags = local.common_tags
 }
 
+module "vmlinux" {
+  source = "./modules/vmlinux-9121"
+
+  resource_group_name = module.rgroup.resource_group_name
+  location            = var.location
+  humber_id           = var.humber_id
+
+  subnet_id = module.network.subnet_id
+
+  boot_diagnostics_storage_uri = module.common.storage_account_primary_blob_endpoint
+
+  vm_size        = var.linux_vm_size
+  admin_username = var.linux_admin_username
+
+  ssh_public_key_path  = var.linux_ssh_public_key_path
+  ssh_private_key_path = var.linux_ssh_private_key_path
+
+  dns_prefix = var.linux_dns_prefix
+
+  tags = local.common_tags
+}
+

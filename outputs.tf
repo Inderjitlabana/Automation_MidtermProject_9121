@@ -55,3 +55,27 @@ output "storage_account_primary_blob_endpoint" {
   value = module.common.storage_account_primary_blob_endpoint
 }
 
+output "linux_vm_names" {
+  value = module.vmlinux.linux_vm_names
+}
+
+output "linux_vm_ids" {
+  value = module.vmlinux.linux_vm_ids
+}
+
+output "linux_public_ips" {
+  value = module.vmlinux.linux_public_ips
+}
+
+output "linux_fqdns" {
+  value = module.vmlinux.linux_fqdns
+}
+
+output "linux_nic_ids" {
+  value = module.vmlinux.linux_nic_ids
+}
+
+output "linux_zones" {
+  value = module.vmlinux.linux_zones
+}
+
