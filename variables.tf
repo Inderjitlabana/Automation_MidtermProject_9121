@@ -61,3 +61,17 @@ variable "linux_dns_prefix" {
   type = string
 }
 
+variable "windows_vm_size" {
+  type = string
+}
+
+variable "windows_admin_username" {
+  type    = string
+  default = "azureadmin"
+}
+
+variable "windows_admin_password" {
+  type      = string
+  sensitive = true
+}
+

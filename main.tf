@@ -78,3 +78,25 @@ module "vmlinux" {
   tags = local.common_tags
 }
 
+module "vmwindows" {
+  source = "./modules/vmwindows-9121"
+
+  humber_id = var.humber_id
+  location  = var.location
+
+  resource_group_name = module.rgroup.resource_group_name
+  subnet_id           = module.network.subnet_id
+
+  storage_account_blob_endpoint = module.common.storage_account_primary_blob_endpoint
+
+  vm_count = 1
+  vm_size  = var.windows_vm_size
+
+  admin_username = var.windows_admin_username
+  admin_password = var.windows_admin_password
+
+  enable_monitor_agent = true
+
+  tags = local.tags
+}
+

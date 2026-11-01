@@ -15,15 +15,15 @@ output "linux_vm_ids" {
 
 output "linux_public_ips" {
   value = {
-    for k, pip in azurerm_public_ip.linux_pip :
-    k => pip.ip_address
+    for key, pip in azurerm_public_ip.linux_pip :
+    key => pip.ip_address
   }
 }
 
 output "linux_fqdns" {
   value = {
-    for k, pip in azurerm_public_ip.linux_pip :
-    k => pip.fqdn
+    for key, pip in azurerm_public_ip.linux_pip :
+    key => pip.fqdn
   }
 }
 

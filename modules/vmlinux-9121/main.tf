@@ -9,8 +9,10 @@ locals {
 
 # Public IP for each VM
 resource "azurerm_public_ip" "linux_pip" {
-  for_each = local.linux_vms
-
+  for_each = {
+    for key, vm in local.linux_vms : key => vm
+    if key != "vm3"
+  }
   name                = "${var.humber_id}-linux-pip-${each.value.number}"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -37,7 +39,10 @@ resource "azurerm_network_interface" "linux_nic" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
 
-    public_ip_address_id = azurerm_public_ip.linux_pip[each.key].id
+    public_ip_address_id = try(
+      azurerm_public_ip.linux_pip[each.key].id,
+      null
+    )
   }
 
   tags = var.tags

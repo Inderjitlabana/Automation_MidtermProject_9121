@@ -79,3 +79,23 @@ output "linux_zones" {
   value = module.vmlinux.linux_zones
 }
 
+output "windows_hostnames" {
+  value = module.vmwindows.windows_hostnames
+}
+
+output "windows_fqdns" {
+  value = module.vmwindows.windows_fqdns
+}
+
+output "windows_private_ips" {
+  value = module.vmwindows.windows_private_ips
+}
+
+output "windows_public_ips" {
+  value = module.vmwindows.windows_public_ips
+}
+
+output "windows_availability_set" {
+  value = module.vmwindows.windows_availability_set_name
+}
+
