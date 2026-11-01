@@ -109,3 +109,14 @@ output "windows_data_disk" {
 output "total_data_disks" {
   value = module.datadisk.total_disks
 }
+output "loadbalancer_name" {
+  value = module.loadbalancer.loadbalancer_name
+}
+
+output "loadbalancer_public_ip" {
+  value = module.loadbalancer.loadbalancer_public_ip
+}
+
+output "loadbalancer_fqdn" {
+  value = module.loadbalancer.loadbalancer_fqdn
+}

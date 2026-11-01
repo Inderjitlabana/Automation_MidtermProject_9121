@@ -116,3 +116,15 @@ module "datadisk" {
   tags = local.tags
 }
 
+module "loadbalancer" {
+  source = "./modules/loadbalancer-9121"
+
+  humber_id           = var.humber_id
+  location            = var.location
+  resource_group_name = module.rgroup.resource_group_name
+
+  linux_nic_ids = module.vmlinux.linux_nic_ids
+
+  tags = local.tags
+}
+

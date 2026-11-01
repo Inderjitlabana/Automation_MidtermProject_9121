@@ -11,7 +11,7 @@ locals {
 resource "azurerm_public_ip" "linux_pip" {
   for_each = {
     for key, vm in local.linux_vms : key => vm
-    if key != "vm3"
+    if key == "vm1"
   }
   name                = "${var.humber_id}-linux-pip-${each.value.number}"
   location            = var.location
